@@ -1,0 +1,77 @@
+--------------------------------------View-----------------------------------------
+Jobs: 
+1. Be a nested child of Processor
+2. Render out current state 
+3. Render out current available controls
+4. Receive user input. 
+		
+									Components:
+									Main View 
+									    |
+						  Saved Routes	--   Edit Route 
+						  						|
+						  			Map - Detailed Map - Notes
+	
+------------------------------------Processor--------------------------------------
+Jobs: 
+1. Be a nested child of Requestor
+2. Be a parent of View
+3. Take user input from View 
+4. Be able to process input and return to View if no request of data is necessary
+5. Be able to process input and prepare and send input to Requestor if data request is necessary.
+
+// Shallow refers to any processing that does not involve requests to database. Deep refers to the inverse. 
+
+									Components:
+									Processor - View
+										|
+								Shallow Processor > (accesses state in Requestor)
+									    |
+							       Deep Processor > (prepares request for Requestor)
+
+------------------------------------Requestor--------------------------------------
+Jobs: 
+1. Be a parent of Processor
+2. Take a prepared request from the processor
+3. Be able to make a request from the data base. 
+4. Maintain current view state 
+5. Update state depending upon the view changes 
+
+									Components:
+									 Requestor - Processor
+									    |
+									 Receiver
+									    |
+									  Sender
+
+--------------------------------------Data-----------------------------------------
+Jobs: 
+1. Maintain saved data 
+2. Respond to requests with data
+3. Respond to entries and store new data.
+
+									Components: 
+									Data Base
+									    |
+   FireBase > (not really a component)  -  Communication
+							  					 |
+							  			Receiver - Sender > (To Firebase)
+
+
+
+
+---------------------------------Overall Architecture------------------------------
+										
+									 Application
+									 	 |
+							Backend	------------ Frontend
+							   |                    |
+							Database			Requestor
+													|
+												Processor
+													|
+												   View						
+
+
+
+End Goal: To create a trade route maker that uses the Taleworlds Warband map to display information about available resources, wealth, productivity, prices, suggested route options and example routes per good, and the current saved trade route in progress. The route maker is to have 1) a map, 2) a smaller display for details on towns and villages, 3), notepad, 4) a section for storing saved trade routes 
