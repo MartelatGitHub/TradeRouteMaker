@@ -55,7 +55,7 @@ Jobs:
 									    |
    FireBase > (not really a component)  -  Communication
 							  					 |
-							  			Receiver - Sender > (To Firebase)
+							  			Receiver - EditData > (To Firebase)
 
 
 
